@@ -1,0 +1,39 @@
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+
+    // opacity: 80%;
+    position: relative;
+}
+.login input{
+    padding: .5rem .5rem .5rem .5rem;
+    width: 40vw;
+    border: 1px solid lightgray;
+   
+}
+.input{
+    margin-top: .8rem;
+}
+.from{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.closebtn{
+    position: absolute;
+    top: 1rem;
+    right: 1cm;
+}
+
+.registerbtn{
+    background: #fff;
+    color: #191919;
+    border: 1px solid gray;
+    padding: .3rem 3.2rem;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}

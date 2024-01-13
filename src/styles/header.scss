@@ -1,0 +1,19 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0 1rem 0;
+}
+.navItem{
+    text-decoration: none;
+    list-style-type: none; 
+    padding: .5rem;
+    color: #ffffff;
+}
+.navItem:hover{
+   background-color: #ffff;
+   color: #191919;
+}
+.logo{
+    font-weight: bold;
+    color: #ffffff;
+}
