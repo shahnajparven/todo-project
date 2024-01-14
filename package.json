@@ -13,10 +13,12 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.3",
     "@mui/material": "^5.15.3",
+    "bcrypt": "^5.1.1",
     "cookie": "^0.6.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
     "next": "14.0.4",
+    "prettier": "^3.2.2",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.69.7"
