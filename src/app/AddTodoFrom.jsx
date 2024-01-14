@@ -1,13 +1,14 @@
 "use client";
 import React, { useState } from "react";
 
-const From = () => {
+const AddTodoFrom = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   return (
-    <div className="container">
+    <div className="containerFrom">
       <div className="todoFrom">
         <from className="from">
+          <div>
           <div className="input">
             <input
               value={title}
@@ -24,7 +25,8 @@ const From = () => {
               placeholder="Task Description"
             />
           </div>
-
+          </div>
+          
           <div
             style={{
               padding: "1.5rem",
@@ -34,7 +36,7 @@ const From = () => {
               alignItems: "center",
             }}
           >
-            <div>
+          
               <button
                 style={{ background: "#191919", color: "#fff" }}
                 className="button"
@@ -43,7 +45,7 @@ const From = () => {
               >
                 Add Task
               </button>
-            </div>
+           
           </div>
         </from>
       </div>
@@ -51,4 +53,4 @@ const From = () => {
   );
 };
 
-export default From;
+export default AddTodoFrom;

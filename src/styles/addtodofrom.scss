@@ -1,8 +1,12 @@
+.containerFrom{
+    padding: 0 3rem 0 3rem ;
+}
 .todoFrom{
+    margin-top: 3rem;
     background-color: #fff;
     padding: 2rem 4rem;
-    margin-top: 2rem;
     width: 50vw;
+    box-shadow: 0 4px 30px 2px lightgray, 0 3px 4px 0 lightgray;
 }
 
 .todoFrom input{

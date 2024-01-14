@@ -36,7 +36,7 @@ export const TodoBtn = ({ id, completed }) => {
   return (
     <div className="checkboxs">
       <div>
-      <label class="container">
+      <label class="checkbokContainer">
         <input type="checkbox"  />
         <span class="checkmark"></span>
       </label>
