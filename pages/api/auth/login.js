@@ -31,7 +31,7 @@ const handler = asyncError(async (req, res) => {
   cookieSetter(res, token, true);
   res.status(200).json({
     status: "success",
-    message: "Loge in Successully",
+    message: "Loge in Successfull",
   });
 });
 export default handler;

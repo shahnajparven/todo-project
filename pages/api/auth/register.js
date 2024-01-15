@@ -32,7 +32,7 @@ const token = generateToken(user._id);
 cookieSetter(res, token, true);
 res.status(201).json({
   status: "success",
-  message: "User Regestated Successully",
+  message: "User Regestated Successfully",
 });
 });
 export default handler;
