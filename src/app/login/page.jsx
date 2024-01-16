@@ -1,28 +1,61 @@
 "use client";
 import React, { useState } from "react";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const Login = () => {
+const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
   const router = useRouter();
-    const navigate = () => {
-      router.push('/');
-    };
-    const loginHandler = () => {
-      console.log({ email, password });
-    };
+  const navigate = () => {
+    router.push("/");
+  };
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {}
+  };
   return (
-    <>
+  //   <section>
+  //   <form onSubmit={loginHandler}>
+  //     <input
+  //       onChange={(e) => setEmail(e.target.value)}
+  //       value={email}
+  //       type="email"
+  //       placeholder="Enter Email"
+  //     />
+  //     <input
+  //       onChange={(e) => setPassword(e.target.value)}
+  //       value={password}
+  //       type="password"
+  //       placeholder="Enter Password"
+  //     />
+  //     <button type="submit">Login</button>
+
+  //     <p>OR</p>
+  //     <Link href={"/register"}>New User</Link>
+  //   </form>
+  // </section>
+    <section>
       <div className="login">
         <div onClick={navigate} className="closebtn">
-          <CloseIcon fontSize="large"/>
+          <CloseIcon fontSize="large" />
         </div>
-        <from className="from">
+        <form onSubmit={loginHandler} className="from">
           <div className="input">
             <input
               value={email}
@@ -35,44 +68,47 @@ const Login = () => {
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              type="email"
+              type="password"
               placeholder="Enter your password"
             />
           </div>
 
-          <div style={{ padding: "1.5rem",display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                alignItems: "center", }}>
+          <div
+            style={{
+              padding: "1.5rem",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <div>
-            <button
-              style={{ background: "#191919", color: "#fff" }}
-              className="button"
-              type="submit"
-              onClick={loginHandler}
-            >
-              Submit
-            </button>
+              <button
+                style={{ background: "#191919", color: "#fff" }}
+                className="button"
+                type="submit"
+                
+              >
+                Submit
+              </button>
             </div>
             <div
               style={{
-                padding: ".5rem"}}
+                padding: ".5rem",
+              }}
             >
               or
             </div>
             <div>
-            <Link
-            href={'/register'}
-              className="registerbtn"
-            >
-              New User
-            </Link>
+              <Link href={"/register"} className="registerbtn">
+                New User
+              </Link>
             </div>
           </div>
-        </from>
+        </form>
       </div>
-    </>
+    </section>
   );
 };
 
-export default Login;
+export default Page;

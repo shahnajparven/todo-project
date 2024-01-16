@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { createContext, useContext } from "react";
 
-const Context = createContext({ user: {} });
+export const Context = createContext({ user: {} });
 export const ContextProvider = ({ children }) => {
   const [user, setUser] = [{}];
 
@@ -36,9 +36,9 @@ export const TodoBtn = ({ id, completed }) => {
   return (
     <div className="checkboxs">
       <div>
-      <label class="checkbokContainer">
+      <label className="checkbokContainer">
         <input type="checkbox"  />
-        <span class="checkmark"></span>
+        <span className="checkmark"></span>
       </label>
       </div>
       <div>

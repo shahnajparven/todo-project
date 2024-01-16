@@ -1,4 +1,4 @@
-import { Blender } from "@mui/icons-material";
+
 import mongoose, { model, Schema } from "mongoose";
 
 const taskSchema = new Schema(
@@ -15,11 +15,11 @@ const taskSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    // user: {
-    //   type: mongoose.Schema.Type.ObjectId,
-    //   required: true,
-    //   ref: "User",
-    // },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -29,3 +29,33 @@ const taskSchema = new Schema(
 );
 mongoose.models = {};
 export const Task = model("Task", taskSchema);
+
+// import mongoose from "mongoose";
+
+// const schema = new mongoose.Schema({
+//   title: {
+//     type: String,
+//     required: true,
+//   },
+//   description: {
+//     type: String,
+//     required: true,
+//   },
+//   isCompleted: {
+//     type: Boolean,
+//     default: false,
+//   },
+//   user: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     required: true,
+//     ref: "User",
+//   },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now,
+//   },
+// });
+
+// mongoose.models = {};
+
+// export const Task = mongoose.model("Task", schema);

@@ -1,16 +1,17 @@
 import {
   asyncError,
-  cookieSetter,
+ 
   errorHandler,
-  generateToken,
+ 
 } from "../../../middlewares/error";
 import { User } from "../../../model/userModel";
 import { connectDB } from "../../../utils/database";
 import bcrypt from "bcrypt";
+import { cookieSetter, generateToken } from "../../../utils/features";
 
 const handler = asyncError(async (req, res) => {
   if (req.method != "POST")
-    return errorHandler(res, 404, "only POST method is allowed");
+    return errorHandler(res, 404, "Only POST Method is Allowed");
 
   const { email, password } = req.body;
 
@@ -31,7 +32,8 @@ const handler = asyncError(async (req, res) => {
   cookieSetter(res, token, true);
   res.status(200).json({
     status: "success",
-    message: "Loge in Successfull",
+    message: "Login Successfull",
+    user,
   });
 });
 export default handler;
