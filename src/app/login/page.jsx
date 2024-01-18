@@ -69,7 +69,7 @@ const Page = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              placeholder="Enter your password"
+              placeholder="Enter Your Password"
             />
           </div>
 
