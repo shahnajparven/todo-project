@@ -1,11 +1,12 @@
 "use client";
 import {configureStore} from "@reduxjs/toolkit";
-import userManagementSlice from "./feature/user-management/userManagementSlice";
+import taskManagementSlice from "./feature/task-management/taskManagementSlice";
+import authSlice from "./feature/user-management/authSlice";
 // import  customeReducers  from "./Reducers";
 
 export const store= configureStore({
     reducer:{
-        // test:customeReducers,
-        products:userManagementSlice
+         auth:authSlice,
+        task:taskManagementSlice
     },
 });

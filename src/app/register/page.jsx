@@ -1,10 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { regUser } from "../../../store/feature/user-management/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Register = () => {
+  const dispatch=useDispatch();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -13,8 +16,19 @@ const Register = () => {
   const navigate = () => {
     router.push("/");
   };
+
+  const { isLoading, isLoggedIn,message,status,user } = useSelector((state) => state.auth);
+  console.log(user)
+  useEffect(() => {
+  
+    if (message) {
+      alert(message);
+    }
+})
   const registerHandler = () => {
-    console.log({ email, password });
+    console.log({ email, name,password });
+    dispatch(regUser({ email,name,password }))
+    
   };
   return (
     <>

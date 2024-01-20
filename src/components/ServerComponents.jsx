@@ -4,22 +4,22 @@
 import React, { useEffect } from "react";
 import { TodoBtn } from "./Clients";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../store/feature/user-management/userManagementSlice";
+import { fetchTask } from "../../store/feature/task-management/taskManagementSlice";
 
 const TodoItem = ({ title, description, id, completed }) => {
   const dispatch = useDispatch();
 
-  const { products, isLoading } = useSelector((state) => state.products);
-  console.log(products, "products");
+  const { task, isLoading } = useSelector((state) => state.task);
+  console.log(task, "products");
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchTask());
   }, [dispatch]);
 
   return (
     <div className="serverComponent">
       <div>
-        {products?.map((item, id) => (
+        {task?.map((item, id) => (
           <div>
             <h3>{item.title}</h3>
             <p>{item.description}</p>

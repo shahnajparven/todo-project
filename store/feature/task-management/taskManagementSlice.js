@@ -2,12 +2,12 @@
 import apiInstance from "../../../src/config/axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchProducts = createAsyncThunk(
-  "products/fetchProducts",
-  async (products, { rejectWithValue, fulfillWithValue }) => {
+export const fetchTask = createAsyncThunk(
+  "task/fetchTask",
+  async (task, { rejectWithValue, fulfillWithValue }) => {
     try {
       const { data } = await apiInstance.get("alltask");
-      console.log(data.data,'action')
+     
       return fulfillWithValue(data.data || data.message);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
@@ -17,32 +17,30 @@ export const fetchProducts = createAsyncThunk(
 
 const initialState = {
   isLoading: false,
-  products: [],
+  task: [],
   error: null,
   isDeleted: false,
   message: "",
   success: false,
 };
 
-export const userManagementSlice = createSlice({
-  name: "products",
+export const taskManagementSlice = createSlice({
+  name: "task",
   initialState,
 
   extraReducers: (builder) => {
     // fetch data
-    builder.addCase(fetchProducts.pending, (state) => {
+    builder.addCase(fetchTask.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      console.log(action.payload,'reducer')
-      console.log(action.payload);
+    builder.addCase(fetchTask.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.products = action.payload;
+      state.task = action.payload;
       state.error = null;
     });
-    builder.addCase(fetchProducts.rejected, (state, action) => {
+    builder.addCase(fetchTask.rejected, (state, action) => {
       state.isLoading = false;
-      state.products = [];
+      state.task = [];
       state.error = action.payload;
     });
   },
@@ -55,5 +53,5 @@ export const userManagementSlice = createSlice({
   },
 });
 
-export const { addUser } = userManagementSlice.actions;
-export default userManagementSlice.reducer;
+export const { addUser } = taskManagementSlice.actions;
+export default taskManagementSlice.reducer;

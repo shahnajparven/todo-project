@@ -25,7 +25,7 @@ const handler = asyncError(async (req, res) => {
 
   cookieSetter(res, token, true);
   res.status(201).json({
-    status: "success",
+    success: true,
     message: "User Regestated Successfully",
     user,
   });
