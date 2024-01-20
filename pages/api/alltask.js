@@ -14,8 +14,8 @@ const handler = asyncError(async (req, res) => {
   const alltasks = await Task.find({});
 
   res.json({
-    success: true,
-    alltasks,
+    message:"success",
+    data: alltasks,
   });
 });
 

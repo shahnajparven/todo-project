@@ -4,10 +4,17 @@ import React, { useState } from "react";
 const AddTodoFrom = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+   console.log({title,description})
+  };
+
   return (
     <div className="containerFrom">
       <div className="todoFrom">
-        <from className="from">
+        <form className="from" onSubmit={submitHandler}>
           <div>
           <div className="input">
             <input
@@ -47,7 +54,7 @@ const AddTodoFrom = () => {
               </button>
            
           </div>
-        </from>
+        </form>
       </div>
     </div>
   );
