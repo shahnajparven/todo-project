@@ -67,7 +67,7 @@ export const authSlice = createSlice({
     // add data
     builder.addCase(regUser.pending, (state) => {
       state.isLoading = true;
-      state.success = false;
+      state.isLoggedIn = false;
     });
     builder.addCase(regUser.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -79,6 +79,7 @@ export const authSlice = createSlice({
     builder.addCase(regUser.rejected, (state, action) => {
       state.isLoading = false;
       state.user = [];
+      state.isLoggedIn = false;
       state.error = action.payload;
     });
 

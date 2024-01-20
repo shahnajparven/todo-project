@@ -1,9 +1,4 @@
-import {
-  asyncError,
- 
-  errorHandler,
- 
-} from "../../../middlewares/error";
+import { asyncError, errorHandler } from "../../../middlewares/error";
 import { User } from "../../../model/userModel";
 import { connectDB } from "../../../utils/database";
 import bcrypt from "bcrypt";
@@ -32,8 +27,8 @@ const handler = asyncError(async (req, res) => {
   cookieSetter(res, token, true);
   res.status(200).json({
     success: true,
-    user,
     message: "Login Successfull",
+    user,
   });
 });
 export default handler;

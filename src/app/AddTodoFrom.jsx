@@ -1,14 +1,16 @@
 "use client";
 import React, { useState } from "react";
+import { addTask } from "../../store/feature/task-management/taskManagementSlice";
+import { useDispatch } from "react-redux";
 
 const AddTodoFrom = () => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
-   console.log({title,description})
+    dispatch(addTask({ title, description }));
   };
 
   return (
@@ -16,24 +18,24 @@ const AddTodoFrom = () => {
       <div className="todoFrom">
         <form className="from" onSubmit={submitHandler}>
           <div>
-          <div className="input">
-            <input
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              type="title"
-              placeholder="Task Title"
-            />
+            <div className="input">
+              <input
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                type="title"
+                placeholder="Task Title"
+              />
+            </div>
+            <div className="input">
+              <input
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                type="description"
+                placeholder="Task Description"
+              />
+            </div>
           </div>
-          <div className="input">
-            <input
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              type="description"
-              placeholder="Task Description"
-            />
-          </div>
-          </div>
-          
+
           <div
             style={{
               padding: "1.5rem",
@@ -43,16 +45,13 @@ const AddTodoFrom = () => {
               alignItems: "center",
             }}
           >
-          
-              <button
-                style={{ background: "#191919", color: "#fff" }}
-                className="button"
-                type="submit"
-                //   onClick={loginHandler}
-              >
-                Add Task
-              </button>
-           
+            <button
+              style={{ background: "#191919", color: "#fff" }}
+              className="button"
+              type="submit"
+            >
+              Add Task
+            </button>
           </div>
         </form>
       </div>

@@ -2,6 +2,7 @@ import "../styles/app.scss";
 import { Inter } from "next/font/google";
 import Header from "./Header";
 import ReduxStoreProvider from "../../store/Provider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Header />
+        <Toaster />
         <ReduxStoreProvider>{children}</ReduxStoreProvider>
       </body>
     </html>

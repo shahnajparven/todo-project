@@ -6,6 +6,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../store/feature/user-management/authSlice";
+import toast from "react-hot-toast";
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -24,14 +25,13 @@ const Page = () => {
       redirect("/");
     }
     if (message) {
-      alert(message);
+      toast.success(message);
     }
    
   }, [dispatch, isLoggedIn,message]);
 
   const loginHandler = async (e) => {
     e.preventDefault();
-    console.log({ email, password });
     dispatch(loginUser({ email, password }));
     
   };

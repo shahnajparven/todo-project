@@ -1,13 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
-import { regUser } from "../../../store/feature/user-management/authSlice";
+import {
+  regUser,
+  reset,
+} from "../../../store/feature/user-management/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const Register = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -17,18 +21,21 @@ const Register = () => {
     router.push("/");
   };
 
-  const { isLoading, isLoggedIn,message,status,user } = useSelector((state) => state.auth);
-  console.log(user)
+  const { isLoading, message, user, isLoggedIn } = useSelector(
+    (state) => state.auth
+  );
+  console.log(user);
   useEffect(() => {
-  
-    if (message) {
-      alert(message);
+    if (isLoggedIn) {
+      toast.success(message);
+      redirect("/");
     }
-})
-  const registerHandler = () => {
-    console.log({ email, name,password });
-    dispatch(regUser({ email,name,password }))
-    
+  }, [dispatch, message, isLoggedIn]);
+
+  const registerHandler = (e) => {
+    e.preventDefault();
+    console.log({ email, name, password })
+    dispatch(regUser({ email, name, password }));
   };
   return (
     <>
@@ -36,7 +43,7 @@ const Register = () => {
         <div onClick={navigate} className="closebtn">
           <CloseIcon fontSize="large" />
         </div>
-        <from className="from">
+        <form className="from" onSubmit={registerHandler}>
           <div className="input">
             <input
               value={name}
@@ -76,7 +83,6 @@ const Register = () => {
                 style={{ background: "#191919", color: "#fff" }}
                 className="button"
                 type="submit"
-                onClick={registerHandler}
               >
                 Sign Up
               </button>
@@ -94,7 +100,7 @@ const Register = () => {
               </Link>
             </div>
           </div>
-        </from>
+        </form>
       </div>
     </>
   );

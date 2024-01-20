@@ -37,7 +37,7 @@ const handler = asyncError(async (req, res) => {
 
   if (!user) return errorHandler(res, 401, "Login First");
 
-  await Task.create({
+  const task = await Task.create({
     title,
     description,
     user: user._id,
@@ -46,6 +46,7 @@ const handler = asyncError(async (req, res) => {
   res.json({
     success: true,
     message: "Task Created",
+    task,
   });
 });
 
