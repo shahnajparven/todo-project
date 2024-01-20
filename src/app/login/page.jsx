@@ -26,7 +26,7 @@ const Page = () => {
         },
       });
       const data = await res.json();
-      console.log(data);
+      console.log(data,'data');
     } catch (error) {}
   };
   return (
