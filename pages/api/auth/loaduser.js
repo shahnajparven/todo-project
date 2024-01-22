@@ -34,7 +34,6 @@ const handler = asyncError(async (req, res) => {
   if (!user) return errorHandler(res, 401, "Login First");
 
   const users = await User.findById(user);
-console.log(users)
   res.json({
     success: true,
     users,
