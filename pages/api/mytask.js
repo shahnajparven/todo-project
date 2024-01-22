@@ -21,6 +21,7 @@ import { Task } from "../../model/taskModel";
 import { asyncError, errorHandler } from "../../middlewares/error";
 import { connectDB } from "../../utils/database";
 import { checkAuth } from "../../utils/features";
+import { User } from "../../model/userModel";
 
 const handler = asyncError(async (req, res) => {
   if (req.method !== "GET")

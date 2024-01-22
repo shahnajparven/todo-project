@@ -41,6 +41,18 @@ export const deleteTask = createAsyncThunk(
   }
 );
 
+export const updateTask = createAsyncThunk(
+  "task/updateTask",
+  async (id, { rejectWithValue, fulfillWithValue }) => {
+    console.log(id)
+    try {
+      const { data } = await apiInstance.put(`task/${id}`);
+      return fulfillWithValue(data || data.message);
+    } catch (error) {
+      return rejectWithValue(error?.response?.data.message || "Unknown Error");
+    }
+  }
+);
 
 const initialState = {
   isLoading: false,
@@ -48,6 +60,7 @@ const initialState = {
   error: null,
   isDeleted: false,
   isCreated: false,
+  isUpdated: false,
   message: "",
   success: false,
 };
@@ -105,6 +118,23 @@ export const taskManagementSlice = createSlice({
       builder.addCase(deleteTask.rejected, (state, action) => {
         state.isLoading = false;
         state.isDeleted=false;
+        state.task = [];
+        state.error = action.payload;
+      });
+      // update task
+      builder.addCase(updateTask.pending, (state) => {
+        state.isLoading = true;
+        state.isUpdated=false;
+      });
+      builder.addCase(updateTask.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.message = action.payload.message;
+        state.isUpdated=true;
+        state.error = null;
+      });
+      builder.addCase(updateTask.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isUpdated=false;
         state.task = [];
         state.error = action.payload;
       });

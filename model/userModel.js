@@ -50,4 +50,4 @@ const schema = new mongoose.Schema({
 
 mongoose.models = {};
 
-export const User = mongoose.model("User", schema);
+export const User = mongoose.model("user", schema);

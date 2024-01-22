@@ -3,18 +3,54 @@
 
 import React, { useEffect } from "react";
 import { TodoBtn } from "./Clients";
+import { useDispatch, useSelector } from "react-redux";
+// import { fetchTask, reset } from "../../store/feature/task-management/taskManagementSlice";
+import toast from "react-hot-toast";
+import {
+  fetchTask,
+  reset,
+} from "../../store/feature/task-management/taskManagementSlice";
 
 const TodoItem = ({ title, description, id, completed }) => {
+  const dispatch = useDispatch();
+  const { task, isLoading, error, message } = useSelector(
+    (state) => state.task
+  );
+  useEffect(() => {
+    if (message) {
+      toast.success(message);
+      dispatch(reset());
+    }
+    if (error) {
+      dispatch({ type: "clearError" });
+    }
+    dispatch(fetchTask());
+  }, [dispatch, error, message]);
   return (
-    <div className="serverComponent">
-      <div>
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
-      <div style={{ paddingTop: "1rem" }}>
-        <TodoBtn id={id} completed={completed} />
-      </div>
-    </div>
+    <>
+      {isLoading ? (
+        <div>Loading.....</div>
+      ) : (
+        <div>
+          {task?.map((item, id) => (
+            <div key={item.id}>
+              <div className="serverComponent">
+                <div className="displayTask">
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+
+                  <div style={{ paddingTop: "1rem" }}>
+                    <TodoBtn id={item._id} completed={item.isCompleted} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 

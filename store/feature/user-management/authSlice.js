@@ -30,8 +30,8 @@ export const loadUser = createAsyncThunk(
   "auth/loadUser",
   async (rejectWithValue) => {
     try {
-      const { data } = await apiInstance.get("user/me");
-      return data.data;
+      const { data } = await apiInstance.get("auth/loaduser");
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
     }
@@ -42,8 +42,8 @@ export const logoutUser = createAsyncThunk(
   "auth/logoutUser",
   async (user, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await apiInstance.get("user/logout");
-      return fulfillWithValue(data.data || data.message);
+      const { data } = await apiInstance.get("auth/logout");
+      return fulfillWithValue(data || data.message);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
     }
@@ -52,6 +52,7 @@ export const logoutUser = createAsyncThunk(
 
 const initialState = {
   isLoading: false,
+  // userDetails:{},
   user: [],
   error: null,
   message: "",
@@ -111,7 +112,7 @@ export const authSlice = createSlice({
     builder.addCase(loadUser.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isLoggedIn = true;
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.error = null;
     });
     builder.addCase(loadUser.rejected, (state, action) => {
@@ -128,7 +129,7 @@ export const authSlice = createSlice({
     builder.addCase(logoutUser.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isLoggedIn = false;
-      state.message = action.payload;
+      state.message = action.payload.message;
       state.error = null;
       state.user = [];
     });
@@ -137,12 +138,15 @@ export const authSlice = createSlice({
       state.error = action.payload;
     });
   },
-  clearError: (state) => {
-    state.error = null;
-  },
-  clearMessage: (state) => {
-    state.message = null;
+  reducers: {
+    reset: () =>initialState,
+    clearError: (state) => {
+      state.error = null;
+    },
+    clearMessage: (state) => {
+      state.message = null;
+    },
   },
 });
-export const { reset, clearError } = authSlice.actions;
+export const { reset, clearError,clearMessage } = authSlice.actions;
 export default authSlice.reducer;

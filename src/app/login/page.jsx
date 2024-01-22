@@ -5,7 +5,10 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../../store/feature/user-management/authSlice";
+import {
+  loginUser,
+  reset,
+} from "../../../store/feature/user-management/authSlice";
 import toast from "react-hot-toast";
 
 const Page = () => {
@@ -18,22 +21,16 @@ const Page = () => {
     router.push("/");
   };
 
-  const { isLoading, isLoggedIn,message,user } = useSelector((state) => state.auth);
-  console.log(user)
+  const { isLoggedIn } = useSelector((state) => state.auth);
   useEffect(() => {
     if (isLoggedIn) {
       redirect("/");
     }
-    if (message) {
-      toast.success(message);
-    }
-   
-  }, [dispatch, isLoggedIn,message]);
+  }, [dispatch, isLoggedIn]);
 
   const loginHandler = async (e) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
-    
   };
   // if (user._id) return redirect("/");
 

@@ -21,24 +21,25 @@ const Register = () => {
     router.push("/");
   };
 
-  const { isLoading, message, user, isLoggedIn } = useSelector(
+  const { isLoggedIn } = useSelector(
     (state) => state.auth
   );
-  console.log(user);
+
   useEffect(() => {
     if (isLoggedIn) {
-      toast.success(message);
       redirect("/");
     }
-  }, [dispatch, message, isLoggedIn]);
+  }, [dispatch, isLoggedIn]);
 
   const registerHandler = (e) => {
     e.preventDefault();
-    console.log({ email, name, password })
     dispatch(regUser({ email, name, password }));
   };
   return (
     <>
+    {/* {isLoading ? (
+      <div>Loading.....</div>
+    ) : ( */}
       <div className="login">
         <div onClick={navigate} className="closebtn">
           <CloseIcon fontSize="large" />
@@ -102,6 +103,7 @@ const Register = () => {
           </div>
         </form>
       </div>
+    {/* )} */}
     </>
   );
 };

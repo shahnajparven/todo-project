@@ -24,6 +24,7 @@ export const checkAuth = async (req) => {
   const token = cookie.split("=")[1];
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-  return await User.findById(decoded._id);
+ 
+ const user= await User.findById(decoded._id);
+  return user
 };
