@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginUser,
+  reset,
 } from "../../../store/feature/user-management/authSlice";
 
 const Page = () => {
@@ -19,13 +20,15 @@ const Page = () => {
     router.push("/");
   };
 
-  const { isLoading, isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoading, isLoggedIn} = useSelector(
+    (state) => state.auth
+  );
 
   const loginHandler = async (e) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
   };
-   if (isLoggedIn) return redirect("/");
+  if (isLoggedIn) return redirect("/");
 
   return (
     <>

@@ -11,7 +11,7 @@ import {
   reset,
 } from "../../store/feature/task-management/taskManagementSlice";
 
-const TodoItem = ({ title, description, id, completed }) => {
+const TodoItem = () => {
   const dispatch = useDispatch();
   const { task, isLoading, error, message } = useSelector(
     (state) => state.task
@@ -19,6 +19,7 @@ const TodoItem = ({ title, description, id, completed }) => {
   useEffect(() => {
     if (message) {
       toast.success(message);
+      // dispatch({ type: "clearMessage" });
       dispatch(reset());
     }
     if (error) {

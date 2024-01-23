@@ -4,10 +4,11 @@ import { LogoutButton } from "../components/Clients";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../store/feature/user-management/authSlice";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const {isLoggedIn } = useSelector((state) => state.auth);
+  const {isLoggedIn} = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
