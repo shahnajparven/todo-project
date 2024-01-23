@@ -16,25 +16,32 @@ export default function Home() {
   const {  isLoading, error, message } = useSelector(
     (state) => state.auth
   );
-  useEffect(() => {
-    if (message) {
-      toast.success(message);
-      dispatch({ type: "clearMessage" });
-    }
-    if (error) {
-      toast.error(error);
-      dispatch({ type: "clearError" });
-    }
-    // if (isCreated) {
-    //   // toast.success(message);
-    //   dispatch({ type: "reset" });
-    // }
-    // if (isDeleted) {
-    //   toast.success(message);
-    //   dispatch({ type: "reset" });
-    // }
-    dispatch(loadUser());
-  }, [dispatch, error, message]);
+  // useEffect(() => {
+  //   if (message) {
+  //     toast.success(message);
+  //     dispatch({ type: "clearMessage" });
+  //   }
+  //   if (error) {
+  //     toast.error(error);
+  //     dispatch({ type: "clearError" });
+  //   }
+  //   // if (isCreated) {
+  //   //   // toast.success(message);
+  //   //   dispatch({ type: "reset" });
+  //   // }
+  //   // if (isDeleted) {
+  //   //   toast.success(message);
+  //   //   dispatch({ type: "reset" });
+  //   // }
+  //   dispatch(loadUser());
+  // }, [dispatch, error, message]);
+
+  useEffectX(() => {
+    console.log(val, someotherVal)
+  }, [val, someotherVal])
+  useEffectX(() => {
+   console.log("do something after every render")
+  })
 
   return (
     <>
