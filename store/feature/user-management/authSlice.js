@@ -52,7 +52,6 @@ export const logoutUser = createAsyncThunk(
 
 const initialState = {
   isLoading: false,
-  // userDetails:{},
   user: [],
   error: null,
   message: "",
@@ -89,6 +88,7 @@ export const authSlice = createSlice({
       state.isLoading = true;
       state.isLoggedIn = false;
       state.success = false;
+      
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.success = true;

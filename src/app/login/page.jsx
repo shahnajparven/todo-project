@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -7,7 +7,6 @@ import { redirect } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginUser,
-  reset,
 } from "../../../store/feature/user-management/authSlice";
 
 const Page = () => {

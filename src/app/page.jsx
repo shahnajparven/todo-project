@@ -5,7 +5,6 @@ import AddTodoFrom from "./AddTodoFrom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchTask,
-  reset,
 } from "../../store/feature/task-management/taskManagementSlice";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
@@ -13,11 +12,11 @@ import { loadUser } from "../../store/feature/user-management/authSlice";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const {  isLoading, error, message } = useSelector(
+  const {  isLoading, error, message,success } = useSelector(
     (state) => state.auth
   );
   // useEffect(() => {
-  //   if (message) {
+  //   if (success) {
   //     toast.success(message);
   //     dispatch({ type: "clearMessage" });
   //   }
@@ -34,14 +33,8 @@ export default function Home() {
   //   //   dispatch({ type: "reset" });
   //   // }
   //   dispatch(loadUser());
-  // }, [dispatch, error, message]);
+  // }, [dispatch, error, message,success]);
 
-  useEffectX(() => {
-    console.log(val, someotherVal)
-  }, [val, someotherVal])
-  useEffectX(() => {
-   console.log("do something after every render")
-  })
 
   return (
     <>

@@ -44,7 +44,6 @@ export const deleteTask = createAsyncThunk(
 export const updateTask = createAsyncThunk(
   "task/updateTask",
   async (id, { rejectWithValue, fulfillWithValue }) => {
-    console.log(id)
     try {
       const { data } = await apiInstance.put(`task/${id}`);
       return fulfillWithValue(data || data.message);
