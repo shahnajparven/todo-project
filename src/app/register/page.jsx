@@ -17,7 +17,7 @@ const Register = () => {
     router.push("/");
   };
 
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn,isLoading } = useSelector((state) => state.auth);
 
   const registerHandler = (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ const Register = () => {
     setPassword('');
 
   };
-  if (isLoggedIn,isLoading) return redirect("/");
+  if (isLoggedIn) return redirect("/");
 
   return (
     <>
