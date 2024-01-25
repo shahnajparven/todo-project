@@ -22,6 +22,10 @@ const Register = () => {
   const registerHandler = (e) => {
     e.preventDefault();
     dispatch(regUser({ email, name, password }));
+    setName('');
+    setEmail('');
+    setPassword('');
+
   };
   if (isLoggedIn) return redirect("/");
 

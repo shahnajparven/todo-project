@@ -11,6 +11,8 @@ const AddTodoFrom = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(addTask({ title, description }));
+    setTitle('');
+    setDescription('');
   };
 
   return (

@@ -28,6 +28,8 @@ const Page = () => {
   const loginHandler = async (e) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
+    setEmail('');
+    setPassword('');
   };
   if (isLoggedIn) return redirect("/");
 
