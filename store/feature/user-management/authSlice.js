@@ -6,7 +6,7 @@ export const regUser = createAsyncThunk(
   "auth/regUser",
   async (auth, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await apiInstance.post("auth/register", auth);
+      const { data } = await apiInstance.post("/api/auth/register", auth);
       return fulfillWithValue(data || data.message);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
@@ -18,7 +18,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (auth, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await apiInstance.post("auth/login", auth);
+      const { data } = await apiInstance.post("/api/auth/login", auth);
       return fulfillWithValue(data || data.message);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
@@ -30,7 +30,7 @@ export const loadUser = createAsyncThunk(
   "auth/loadUser",
   async (rejectWithValue) => {
     try {
-      const { data } = await apiInstance.get("auth/loaduser");
+      const { data } = await apiInstance.get("/api/auth/loaduser");
       return data;
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
@@ -42,7 +42,7 @@ export const logoutUser = createAsyncThunk(
   "auth/logoutUser",
   async (user, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await apiInstance.get("auth/logout");
+      const { data } = await apiInstance.get("/api/auth/logout");
       return fulfillWithValue(data || data.message);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");

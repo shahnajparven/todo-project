@@ -7,7 +7,7 @@ export const addTask = createAsyncThunk(
   "task/addTask",
   async (task, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await apiInstance.post("newtask", task);
+      const { data } = await apiInstance.post("/api/newtask", task);
       return fulfillWithValue(data || data.message);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
@@ -20,7 +20,7 @@ export const fetchTask = createAsyncThunk(
   "task/fetchTask",
   async (task, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await apiInstance.get("mytask");
+      const { data } = await apiInstance.get("/api/mytask");
      
       return fulfillWithValue(data || data.message);
     } catch (error) {
@@ -33,7 +33,7 @@ export const deleteTask = createAsyncThunk(
   async (id, { rejectWithValue, fulfillWithValue }) => {
     console.log(id)
     try {
-      const { data } = await apiInstance.delete(`task/${id}`);
+      const { data } = await apiInstance.delete(`/api/task/${id}`);
       return fulfillWithValue(data || data.message);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
@@ -45,7 +45,7 @@ export const updateTask = createAsyncThunk(
   "task/updateTask",
   async (id, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await apiInstance.put(`task/${id}`);
+      const { data } = await apiInstance.put(`/api/task/${id}`);
       return fulfillWithValue(data || data.message);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
