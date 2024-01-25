@@ -19,8 +19,7 @@ const TodoItem = () => {
   useEffect(() => {
     if (message) {
       toast.success(message);
-      // dispatch({ type: "clearMessage" });
-      dispatch(reset());
+      dispatch({ type: "clearMessage" });
     }
     if (error) {
       dispatch({ type: "clearError" });

@@ -9,6 +9,7 @@ import {
   loginUser,
   reset,
 } from "../../../store/feature/user-management/authSlice";
+import toast from "react-hot-toast";
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Page = () => {
     router.push("/");
   };
 
-  const { isLoading, isLoggedIn} = useSelector(
+  const { isLoading, isLoggedIn } = useSelector(
     (state) => state.auth
   );
 
