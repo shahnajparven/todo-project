@@ -27,7 +27,7 @@ const Register = () => {
     setPassword('');
 
   };
-  if (isLoggedIn) return redirect("/");
+  if (isLoggedIn,isLoading) return redirect("/");
 
   return (
     <>
