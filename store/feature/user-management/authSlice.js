@@ -18,7 +18,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (auth, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await post("https://todo-project-rosy.vercel.app/api/auth/login", auth);
+      const { data } = await apiInstance.post("/api/auth/login", auth);
       return fulfillWithValue(data || data.message);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
